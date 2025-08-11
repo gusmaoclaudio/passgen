@@ -7,7 +7,8 @@ use App::Passgen;
 subtest 'defaults' => {
     my $p = generate();
     is $p.chars, 16, 'default length 16';
-    ok $p ~~ /<:alnum>+/, 'has alnum';
+    ok $p ~~ /<:alpha>/, 'has at least one letter';
+    ok $p ~~ /\d/,       'has at least one digit';
 }
 
 subtest 'length + symbols' => {
