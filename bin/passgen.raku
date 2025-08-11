@@ -1,5 +1,5 @@
 #!/usr/bin/env raku
-use App::Passgen :generate;
+use App::Passgen;
 
 unit sub MAIN(
     Int  :$length = 16,
