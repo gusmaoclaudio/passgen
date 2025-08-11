@@ -25,8 +25,11 @@ subtest 'no digits' => {
 my $cmd = $*PROGRAM.parent.parent.add('bin').add('passgen.raku').absolute;
 
 sub run_cli(*@args) {
-    run($cmd, |@args).out.slurp(:close).lines;
+    my $cmdline = 'raku "' ~ $cmd ~ '" ' ~ @args.join(' ');
+    my $out = qqx{$cmdline};
+    $out.lines;
 }
+
 
 subtest 'cli count & length' => {
     my @out = run_cli('--length=20', '--count=3');
