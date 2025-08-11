@@ -3,33 +3,33 @@ use lib 'lib';
 use Test;
 use App::Passgen;
 
-# Testes do módulo
-subtest 'generate defaults' => {
+# --- testes do módulo ---
+subtest 'defaults' => {
     my $p = generate();
     is $p.chars, 16, 'default length 16';
-    ok $p ~~ /<[:alpha:\d]>+/, 'has alnum';
+    ok $p ~~ /<:alnum>+/, 'has alnum';
 }
 
-subtest 'generate symbols + length' => {
+subtest 'length + symbols' => {
     my $p = generate(:length(24), :symbols);
     is $p.chars, 24, 'length 24';
-    ok $p ~~ /<[!@#\$%\^&*\-_\+=\?~]>/, 'has symbol';
+    ok $p ~~ /<[!@#\$%\^&*\-_\+=\?~]>/, 'has at least one symbol';
 }
 
 subtest 'no digits' => {
     my $p = generate(:digits(False));
-    ok $p !~~ /\d/, 'no digits present';
+    ok $p !~~ /\d/, 'contains no digits';
 }
 
-# Smoke test do CLI
+# --- smoke test do CLI ---
 my $cmd = $*PROGRAM.parent.parent.add('bin').add('passgen.raku').absolute;
 
-sub run(*@args) {
+sub run_cli(*@args) {
     run($cmd, |@args).out.slurp(:close).lines;
 }
 
-subtest 'cli count and length' => {
-    my @out = run('--length=20', '--count=3');
+subtest 'cli count & length' => {
+    my @out = run_cli('--length=20', '--count=3');
     is @out.elems, 3, '3 lines';
     ok all(@out».chars) == 20, 'each has 20 chars';
 }
