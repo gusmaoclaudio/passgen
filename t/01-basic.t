@@ -1,5 +1,5 @@
-use lib 'lib';
 use v6;
+use lib 'lib';
 use Test;
 use App::Passgen :generate;
 
