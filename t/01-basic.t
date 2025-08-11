@@ -1,7 +1,7 @@
+use lib 'lib';
 use v6;
 use Test;
 use App::Passgen :generate;
-use lib 'lib';
 
 # Testes do módulo
 subtest 'generate defaults' => {

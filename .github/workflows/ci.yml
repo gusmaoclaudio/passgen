@@ -1,6 +1,8 @@
 name: CI
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
 
 jobs:
   test:
@@ -11,15 +13,20 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Versions
+      - name: Show versions
         run: |
           raku -v
           zef --version || true
 
-      - name: Install deps
+      - name: Show project structure
         run: |
-          zef install --/test --deps-only .
+          ls -R
+
+      - name: Install module (no tests)
+        run: |
+          # Instala o próprio módulo no ambiente local do Raku
+          zef install --/test .
 
       - name: Run tests
         run: |
-          prove -e "raku -Ilib" -r t
+          prove -e raku -r t
