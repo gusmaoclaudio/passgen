@@ -24,5 +24,6 @@ jobs:
           zef install --/test --deps-only .
 
       - name: Testes
-        run: |
-          prove -e raku -r t
+  run: |
+    prove -e 'raku -Ilib' -r t
+
