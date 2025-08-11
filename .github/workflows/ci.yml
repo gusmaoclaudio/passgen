@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    # Usa o container oficial do Rakudo Star (vem com raku + zef)
+    container: rakudo-star:latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Versões
+        run: |
+          raku -v
+          zef --version
+
+      - name: Instalar dependências (sem rodar testes de deps)
+        run: |
+          # Se houver META6.json com deps, isso resolve tudo.
+          zef install --/test --deps-only .
+
+      - name: Testes
+        run: |
+          prove -e raku -r t

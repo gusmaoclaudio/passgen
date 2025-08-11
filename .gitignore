@@ -1,0 +1,23 @@
+# Raku / Rakudo
+.precomp/
+lib/.precomp/
+resources/.precomp/
+
+# Build / dist
+blib/
+dist/
+cover/
+.cov/
+tmp/
+*.bak
+*.swp
+*.swo
+
+# Editors / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Zef (quando criando dists locais)
+zef-report.json

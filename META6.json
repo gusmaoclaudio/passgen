@@ -1,0 +1,16 @@
+{
+  "name": "App::Passgen",
+  "version": "0.1.0",
+  "auth": "github:gusmaoclaudio",
+  "api": "1",
+  "description": "Random password generator CLI and library in Raku",
+  "source-url": "git+https://github.com/gusmaoclaudio/passgen.git",
+  "license": "GPL-3.0-or-later",
+  "provides": {
+    "App::Passgen": "lib/App/Passgen.rakumod"
+  },
+  "depends": [],
+  "test-depends": ["Test"],
+  "tags": ["password", "cli", "security", "raku"],
+  "bin": ["bin/passgen.raku"]
+}
